@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5kxnyg75jt1l"]
+
+[ext_resource type="Script" path="res://script/bomb.gd" id="1_sxytn"]
+[ext_resource type="PackedScene" uid="uid://d2cajnb5q3pmv" path="res://scenes/wires_module.tscn" id="1_wjc2y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahar1"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhhdb"]
+albedo_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Bomb" type="Area3D"]
+script = ExtResource("1_sxytn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ahar1")
+surface_material_override/0 = SubResource("StandardMaterial3D_rhhdb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Modules" type="Node3D" parent="."]
+
+[node name="WiresModule" parent="Modules" instance=ExtResource("1_wjc2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.31)
+
+[connection signal="input_event" from="Modules/WiresModule" to="." method="_on_wires_module_input_event"]
