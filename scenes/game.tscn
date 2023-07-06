@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://pj2f4v63hfms"]
+[gd_scene load_steps=9 format=3 uid="uid://pj2f4v63hfms"]
 
 [ext_resource type="PackedScene" uid="uid://b5kxnyg75jt1l" path="res://scenes/bomb.tscn" id="1_hjbi6"]
 [ext_resource type="Script" path="res://script/game.gd" id="1_p57ic"]
@@ -17,6 +17,20 @@ sky = SubResource("Sky_mbqen")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5v1dy"]
 bg_color = Color(0, 0, 0, 0.823529)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dacyv"]
+bg_color = Color(0.223529, 0.223529, 0.223529, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fwxv"]
+bg_color = Color(0.411765, 0.411765, 0.411765, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -69,9 +83,12 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5v1dy")
 
 [node name="BackToBomb" type="Button" parent="GUI/MarginContainer/MinigameContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_dacyv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5fwxv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwxv")
 text = "Back to Bomb"
 
 [node name="WinDialog" type="PanelContainer" parent="GUI/MarginContainer"]

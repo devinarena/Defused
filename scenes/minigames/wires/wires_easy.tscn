@@ -63,15 +63,15 @@ position = Vector2(304, 32)
 [node name="Outputs" type="Node2D" parent="."]
 
 [node name="Wire1" parent="Outputs" instance=ExtResource("2_g6qgy")]
-position = Vector2(80, 640)
+position = Vector2(80, 608)
 answer_wire = true
 
 [node name="Wire2" parent="Outputs" instance=ExtResource("2_g6qgy")]
-position = Vector2(192, 640)
+position = Vector2(192, 608)
 answer_wire = true
 
 [node name="Wire3" parent="Outputs" instance=ExtResource("2_g6qgy")]
-position = Vector2(304, 640)
+position = Vector2(304, 608)
 answer_wire = true
 
 [node name="WireGrab" type="Area2D" parent="."]
@@ -87,3 +87,13 @@ position = Vector2(40, 288)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2d52p")
 animation = &"unsolved"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 272.0
+offset_right = 352.0
+offset_bottom = 304.0
+text = "Match wires by their relationships!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

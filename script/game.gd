@@ -1,7 +1,8 @@
 extends Node
 
 const minigames = {
-	"wires": "Bomb/Modules/WiresModule/Wires"
+	"wires": "Bomb/Modules/WiresModule/Wires",
+	"debug": "Bomb/Modules/DebugModule/Debug"
 }
 
 @onready var bomb = $Bomb
@@ -31,6 +32,9 @@ func _process(delta):
 
 
 func start_minigame(path: String) -> void:
+	if minigame_container.visible:
+		return
+		
 	minigame_container.show()
 	var minigame_node = get_node(path)
 	minigame_module = minigame_node.get_parent()

@@ -8,13 +8,19 @@ extends Node2D
 var prompts = {
 	# Math
 	"3 x 5": "15",
-	"4!": "24",
 	"-7 + 12": "5",
+	"100 - 36": "64",
+	"sqrt(64)": "8.0",
+	"PI = ~?": "22/7",
+	"4!": "24",
+	"a=b and b=c": "a=c",
 	"f(x) = x - 3, f(3) = ": "0",
 	# Science
 	"protons, neutrons, ...": "electrons",
 	"Oxygen": "O2",
-	"6H20 + 6CO2 -> C6H12O6": "Photosynthesis"
+	"6H20+6CO2 -> C6H12O6": "Photosynthesis",
+	"KCl": "Potassium Chloride",
+	"Helenium Nucleus": "Alpha Radiation"
 }
 
 var selected_wire: Node

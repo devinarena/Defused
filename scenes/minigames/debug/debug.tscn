@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://qkon6xe4kw8"]
+
+[ext_resource type="Script" path="res://script/minigames/debug/debug.gd" id="1_urqaa"]
+[ext_resource type="Texture2D" uid="uid://dd08kqyqmtyuu" path="res://assets/solved.png" id="2_087pw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhh7j"]
+atlas = ExtResource("2_087pw")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn6wy"]
+atlas = ExtResource("2_087pw")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o26v"]
+atlas = ExtResource("2_087pw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15y66"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhh7j")
+}],
+"loop": true,
+"name": &"in_progress",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn6wy")
+}],
+"loop": true,
+"name": &"solved",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o26v")
+}],
+"loop": true,
+"name": &"unsolved",
+"speed": 5.0
+}]
+
+[node name="Debug" type="Node2D"]
+script = ExtResource("1_urqaa")
+
+[node name="Bugs" type="Node2D" parent="."]
+
+[node name="SolvedIndicator" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(40, 288)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_15y66")
+animation = &"unsolved"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 272.0
+offset_right = 352.0
+offset_bottom = 304.0
+text = "Delete all the bugs!"
+horizontal_alignment = 1
+vertical_alignment = 1

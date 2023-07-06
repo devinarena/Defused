@@ -74,27 +74,27 @@ small_text = true
 [node name="Outputs" type="Node2D" parent="."]
 
 [node name="Wire1" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(48, 640)
+position = Vector2(48, 608)
 answer_wire = true
 small_text = true
 
 [node name="Wire2" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(120, 640)
+position = Vector2(120, 608)
 answer_wire = true
 small_text = true
 
 [node name="Wire3" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(192, 640)
+position = Vector2(192, 608)
 answer_wire = true
 small_text = true
 
 [node name="Wire4" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(264, 640)
+position = Vector2(264, 608)
 answer_wire = true
 small_text = true
 
 [node name="Wire5" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(336, 640)
+position = Vector2(336, 608)
 answer_wire = true
 small_text = true
 
@@ -111,3 +111,12 @@ position = Vector2(40, 288)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2d52p")
 animation = &"unsolved"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 80.0
+offset_top = 272.0
+offset_right = 352.0
+offset_bottom = 304.0
+text = "Match wires by their relationships!"
+horizontal_alignment = 1
+vertical_alignment = 1

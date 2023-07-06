@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5kxnyg75jt1l"]
+[gd_scene load_steps=6 format=3 uid="uid://b5kxnyg75jt1l"]
 
 [ext_resource type="Script" path="res://script/bomb.gd" id="1_sxytn"]
-[ext_resource type="PackedScene" uid="uid://d2cajnb5q3pmv" path="res://scenes/wires_module.tscn" id="1_wjc2y"]
+[ext_resource type="PackedScene" uid="uid://7v1qpg43c7el" path="res://scenes/wires_module.tscn" id="1_wjc2y"]
+[ext_resource type="PackedScene" uid="uid://b62ssrxfsmyd3" path="res://scenes/debug_module.tscn" id="3_2kcwx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ahar1"]
 size = Vector3(1, 1, 0.5)
@@ -21,6 +22,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rhhdb")
 [node name="Modules" type="Node3D" parent="."]
 
 [node name="WiresModule" parent="Modules" instance=ExtResource("1_wjc2y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.31)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.3)
+
+[node name="DebugModule" parent="Modules" instance=ExtResource("3_2kcwx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, 0.3)
 
 [connection signal="input_event" from="Modules/WiresModule" to="." method="_on_wires_module_input_event"]
+[connection signal="input_event" from="Modules/DebugModule" to="." method="_on_debug_module_input_event"]

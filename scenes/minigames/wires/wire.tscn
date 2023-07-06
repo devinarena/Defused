@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuq8wajd5qoeg" path="res://assets/wire_breakage.png" id="2_bnj87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10l1d"]
-size = Vector2(20, 64)
+size = Vector2(64, 96)
 
 [node name="Wire" type="Area2D"]
 texture_filter = 1
