@@ -16,14 +16,17 @@ shape = SubResource("CircleShape2D_id21l")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(5, 5)
+scale = Vector2(4, 4)
 sprite_frames = ExtResource("1_35x5x")
 autoplay = "default"
-frame_progress = 0.336039
+frame_progress = 0.670413
 
 [node name="HealthBar" parent="." instance=ExtResource("3_ekcmh")]
 visible = false
 offset_top = -64.0
 offset_bottom = -37.0
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

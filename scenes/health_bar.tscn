@@ -12,6 +12,7 @@ bg_color = Color(0, 0.72549, 0.121569, 1)
 offset_left = -64.0
 offset_right = 64.0
 offset_bottom = 27.0
+mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_1bqo4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mlbsh")
 show_percentage = false

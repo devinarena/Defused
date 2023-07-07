@@ -18,13 +18,13 @@ func _ready():
 	prompt_lbl = $Prompt
 
 	if small_text:
-		prompt_lbl.add_theme_font_size_override("font_size", 10)
+		prompt_lbl.add_theme_font_size_override("font_size", 12)
 
 	if answer_wire:
 		base.flip_v = true
 		breakage.flip_v = true
 		prompt_lbl.position.y *= -1
-		prompt_lbl.position.y -= prompt_lbl.size.y
+		prompt_lbl.position.y -= prompt_lbl.size.y / 2
 
 
 func set_color(color_: Color) -> void:

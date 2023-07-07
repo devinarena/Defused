@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://7v1qpg43c7el"]
+
+[ext_resource type="PackedScene" uid="uid://cbggt73dks1lf" path="res://scenes/modules/module.tscn" id="1_gybap"]
+[ext_resource type="Script" path="res://script/modules/wires_module.gd" id="2_rfgit"]
+[ext_resource type="PackedScene" uid="uid://5imfklqh0s0p" path="res://scenes/minigames/wires/wires_hard.tscn" id="3_c1w0i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yoqio"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aam71"]
+albedo_color = Color(1, 0.258824, 0.258824, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jmb0o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f057k"]
+albedo_color = Color(0.0980392, 0, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kdpy"]
+albedo_color = Color(0.298039, 1, 0, 1)
+
+[node name="WiresModule" instance=ExtResource("1_gybap")]
+script = ExtResource("2_rfgit")
+
+[node name="WireMesh" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(-1.09278e-09, 0.18, 0, -0.025, -7.86805e-09, 0, 0, 0, 0.025, 0, 0, 0.0769617)
+mesh = SubResource("CylinderMesh_yoqio")
+surface_material_override/0 = SubResource("StandardMaterial3D_aam71")
+
+[node name="WireMesh2" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(-1.09278e-09, 0.18, 0, -0.025, -7.86805e-09, 0, 0, 0, 0.025, 0, 0.1, 0.077)
+mesh = SubResource("CylinderMesh_jmb0o")
+surface_material_override/0 = SubResource("StandardMaterial3D_f057k")
+
+[node name="WireMesh3" type="MeshInstance3D" parent="." index="4"]
+transform = Transform3D(-1.09278e-09, 0.18, 0, -0.025, -7.86805e-09, 0, 0, 0, 0.025, 0, -0.1, 0.077)
+mesh = SubResource("CylinderMesh_jmb0o")
+surface_material_override/0 = SubResource("StandardMaterial3D_7kdpy")
+
+[node name="Wires" parent="." index="5" instance=ExtResource("3_c1w0i")]
+visible = false

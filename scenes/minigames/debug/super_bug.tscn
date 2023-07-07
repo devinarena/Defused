@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch244fuhqynwj"]
+
+[ext_resource type="PackedScene" uid="uid://bcggfveh52m0w" path="res://scenes/minigames/debug/bug.tscn" id="1_jqkns"]
+[ext_resource type="Texture2D" uid="uid://dl578dg32yod5" path="res://assets/venom_spider.png" id="2_w764y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sf6rd"]
+atlas = ExtResource("2_w764y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lkes"]
+atlas = ExtResource("2_w764y")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xuot5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sf6rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lkes")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SuperBug" instance=ExtResource("1_jqkns")]
+hitpoints = 8
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_xuot5")
+frame_progress = 0.886931

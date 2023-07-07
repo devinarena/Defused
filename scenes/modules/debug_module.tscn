@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b62ssrxfsmyd3"]
+
+[ext_resource type="PackedScene" uid="uid://cbggt73dks1lf" path="res://scenes/modules/module.tscn" id="1_la8jt"]
+[ext_resource type="Script" path="res://script/modules/debug_module.gd" id="2_v0a0q"]
+[ext_resource type="SpriteFrames" uid="uid://bwty1r7oe6aq6" path="res://assets/debug_bug_frames.tres" id="3_gq6kx"]
+[ext_resource type="PackedScene" uid="uid://qkon6xe4kw8" path="res://scenes/minigames/debug/debug.tscn" id="4_7cair"]
+
+[node name="DebugModule" instance=ExtResource("1_la8jt")]
+script = ExtResource("2_v0a0q")
+
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." index="2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.0694481)
+texture_filter = 0
+sprite_frames = ExtResource("3_gq6kx")
+autoplay = "default"
+frame_progress = 0.415287
+
+[node name="Debug" parent="." index="3" instance=ExtResource("4_7cair")]
+visible = false
+num_bugs = 5
+num_supers = 2

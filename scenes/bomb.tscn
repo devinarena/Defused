@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5kxnyg75jt1l"]
+[gd_scene load_steps=13 format=3 uid="uid://b5kxnyg75jt1l"]
 
 [ext_resource type="Script" path="res://script/bomb.gd" id="1_sxytn"]
-[ext_resource type="PackedScene" uid="uid://7v1qpg43c7el" path="res://scenes/wires_module.tscn" id="1_wjc2y"]
-[ext_resource type="PackedScene" uid="uid://b62ssrxfsmyd3" path="res://scenes/debug_module.tscn" id="3_2kcwx"]
+[ext_resource type="PackedScene" uid="uid://7v1qpg43c7el" path="res://scenes/modules/wires_module.tscn" id="1_wjc2y"]
+[ext_resource type="PackedScene" uid="uid://b62ssrxfsmyd3" path="res://scenes/modules/debug_module.tscn" id="3_2kcwx"]
+[ext_resource type="PackedScene" uid="uid://dl28lv57aas7o" path="res://scenes/modules/passkey_module.tscn" id="4_0ccpd"]
+[ext_resource type="PackedScene" uid="uid://cjvvppgko14cx" path="res://scenes/module_light.tscn" id="5_dratf"]
+[ext_resource type="PackedScene" uid="uid://lwtl33v70atp" path="res://scenes/side_wires.tscn" id="6_war1q"]
+[ext_resource type="PackedScene" uid="uid://btclgqywcq3uu" path="res://scenes/sos_light.tscn" id="7_upjrx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ahar1"]
 size = Vector3(1, 1, 0.5)
@@ -10,14 +14,25 @@ size = Vector3(1, 1, 0.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhhdb"]
 albedo_color = Color(0.188235, 0.188235, 0.188235, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggnu1"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud80m"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_femeb"]
+material = SubResource("StandardMaterial3D_ud80m")
+size = Vector3(0.75, 0.025, 0.15)
+
 [node name="Bomb" type="Area3D"]
 script = ExtResource("1_sxytn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="BaseMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ahar1")
 surface_material_override/0 = SubResource("StandardMaterial3D_rhhdb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ggnu1")
 
 [node name="Modules" type="Node3D" parent="."]
 
@@ -27,5 +42,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.25, 0.3)
 [node name="DebugModule" parent="Modules" instance=ExtResource("3_2kcwx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, 0.3)
 
-[connection signal="input_event" from="Modules/WiresModule" to="." method="_on_wires_module_input_event"]
-[connection signal="input_event" from="Modules/DebugModule" to="." method="_on_debug_module_input_event"]
+[node name="PasskeyModule" parent="Modules" instance=ExtResource("4_0ccpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.3)
+
+[node name="ModuleLights" type="Node3D" parent="."]
+
+[node name="ModuleLight1" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357217, 0.480483, -0.0151319)
+
+[node name="ModuleLight2" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.207, 0.48, -0.015)
+
+[node name="ModuleLight3" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057, 0.48, -0.015)
+
+[node name="ModuleLight4" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093, 0.48, -0.015)
+visible = false
+
+[node name="Wires" parent="." instance=ExtResource("6_war1q")]
+
+[node name="SOSLight" parent="." instance=ExtResource("7_upjrx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -0.35, 0)
+
+[node name="PasskeyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("BoxMesh_femeb")
+
+[node name="Password" type="Label3D" parent="PasskeyMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.025, 0)
+texture_filter = 0
+text = "Passkey: ####"
+font_size = 20
+outline_size = 0

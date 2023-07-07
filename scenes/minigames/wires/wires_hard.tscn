@@ -74,27 +74,27 @@ small_text = true
 [node name="Outputs" type="Node2D" parent="."]
 
 [node name="Wire1" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(48, 608)
+position = Vector2(48, 544)
 answer_wire = true
 small_text = true
 
 [node name="Wire2" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(120, 608)
+position = Vector2(120, 544)
 answer_wire = true
 small_text = true
 
 [node name="Wire3" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(192, 608)
+position = Vector2(192, 544)
 answer_wire = true
 small_text = true
 
 [node name="Wire4" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(264, 608)
+position = Vector2(264, 544)
 answer_wire = true
 small_text = true
 
 [node name="Wire5" parent="Outputs" instance=ExtResource("2_ubwa7")]
-position = Vector2(336, 608)
+position = Vector2(336, 544)
 answer_wire = true
 small_text = true
 
@@ -107,16 +107,16 @@ shape = SubResource("CircleShape2D_or8p3")
 
 [node name="SolvedIndicator" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(40, 288)
+position = Vector2(40, 608)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_2d52p")
 animation = &"unsolved"
 
-[node name="Label" type="Label" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 80.0
-offset_top = 272.0
+offset_top = 584.0
 offset_right = 352.0
-offset_bottom = 304.0
-text = "Match wires by their relationships!"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_bottom = 630.0
+bbcode_enabled = true
+text = "[center]Match all the wires with opposite words.[/center]"
+fit_content = true

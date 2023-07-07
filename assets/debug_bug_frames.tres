@@ -1,23 +1,23 @@
 [gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://bwty1r7oe6aq6"]
 
-[ext_resource type="Texture2D" uid="uid://dl578dg32yod5" path="res://assets/venom_spider.png" id="1_4sy1s"]
+[ext_resource type="Texture2D" uid="uid://0yjq35bbtk5l" path="res://assets/spider.png" id="1_l7q7p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cig6b"]
-atlas = ExtResource("1_4sy1s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcldn"]
+atlas = ExtResource("1_l7q7p")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ha84r"]
-atlas = ExtResource("1_4sy1s")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vttkj"]
+atlas = ExtResource("1_l7q7p")
 region = Rect2(0, 16, 16, 16)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cig6b")
+"texture": SubResource("AtlasTexture_vcldn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ha84r")
+"texture": SubResource("AtlasTexture_vttkj")
 }],
 "loop": true,
 "name": &"default",

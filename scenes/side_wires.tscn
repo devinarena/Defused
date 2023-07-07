@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://lwtl33v70atp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ppb3"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y8xuy"]
+material = SubResource("StandardMaterial3D_2ppb3")
+size = Vector3(0.1, 0.1, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksmhc"]
+albedo_color = Color(0.258824, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bv6pa"]
+material = SubResource("StandardMaterial3D_ksmhc")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.3
+
+[node name="SideWires" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="PlateTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_y8xuy")
+
+[node name="PlateBottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_y8xuy")
+
+[node name="Wire1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.1)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.075)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.05)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.025)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.000189938)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.0248101)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.0498101)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.0748101)
+mesh = SubResource("CylinderMesh_bv6pa")
+
+[node name="Wire9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1)
+mesh = SubResource("CylinderMesh_bv6pa")

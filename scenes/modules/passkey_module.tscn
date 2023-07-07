@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl28lv57aas7o"]
+
+[ext_resource type="PackedScene" uid="uid://cbggt73dks1lf" path="res://scenes/modules/module.tscn" id="1_beny7"]
+[ext_resource type="Script" path="res://script/modules/passkey_module.gd" id="2_7w3lc"]
+[ext_resource type="Texture2D" uid="uid://muu6iclm7rm0" path="res://assets/keypad.png" id="3_gr7h3"]
+[ext_resource type="PackedScene" uid="uid://cid2blrawv4w0" path="res://scenes/minigames/passkey/passkey.tscn" id="4_bnapk"]
+
+[node name="PasskeyModule" instance=ExtResource("1_beny7")]
+script = ExtResource("2_7w3lc")
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0.065)
+texture_filter = 0
+texture = ExtResource("3_gr7h3")
+
+[node name="Passkey" parent="." index="3" instance=ExtResource("4_bnapk")]
+visible = false
