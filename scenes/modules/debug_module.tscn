@@ -7,6 +7,7 @@
 
 [node name="DebugModule" instance=ExtResource("1_la8jt")]
 script = ExtResource("2_v0a0q")
+module_name = "debug"
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="." index="2"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.0694481)

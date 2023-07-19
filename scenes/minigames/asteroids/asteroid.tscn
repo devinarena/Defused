@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxvdi0dpa4fsn"]
+
+[ext_resource type="Script" path="res://script/minigames/asteroids/asteroid.gd" id="1_fv7pq"]
+[ext_resource type="Texture2D" uid="uid://bmpxwfthk4oon" path="res://assets/asteroids.png" id="1_n7muv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahwqc"]
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngcrk"]
+atlas = ExtResource("1_n7muv")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4rtw"]
+atlas = ExtResource("1_n7muv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hbyh"]
+atlas = ExtResource("1_n7muv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlx5d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngcrk")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4rtw")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hbyh")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
+[node name="Asteroid" type="Area2D"]
+texture_filter = 1
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_fv7pq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ahwqc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_dlx5d")
+animation = &"1"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

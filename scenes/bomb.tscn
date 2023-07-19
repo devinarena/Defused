@@ -1,12 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5kxnyg75jt1l"]
+[gd_scene load_steps=18 format=3 uid="uid://b5kxnyg75jt1l"]
 
 [ext_resource type="Script" path="res://script/bomb.gd" id="1_sxytn"]
 [ext_resource type="PackedScene" uid="uid://7v1qpg43c7el" path="res://scenes/modules/wires_module.tscn" id="1_wjc2y"]
 [ext_resource type="PackedScene" uid="uid://b62ssrxfsmyd3" path="res://scenes/modules/debug_module.tscn" id="3_2kcwx"]
 [ext_resource type="PackedScene" uid="uid://dl28lv57aas7o" path="res://scenes/modules/passkey_module.tscn" id="4_0ccpd"]
 [ext_resource type="PackedScene" uid="uid://cjvvppgko14cx" path="res://scenes/module_light.tscn" id="5_dratf"]
+[ext_resource type="PackedScene" uid="uid://cfe8uy7oydcvl" path="res://scenes/modules/asteroids_module.tscn" id="5_eapq1"]
+[ext_resource type="PackedScene" uid="uid://djbtsk3evf254" path="res://scenes/modules/dodge_module.tscn" id="6_bo3d5"]
 [ext_resource type="PackedScene" uid="uid://lwtl33v70atp" path="res://scenes/side_wires.tscn" id="6_war1q"]
 [ext_resource type="PackedScene" uid="uid://btclgqywcq3uu" path="res://scenes/sos_light.tscn" id="7_upjrx"]
+[ext_resource type="PackedScene" uid="uid://72vl5li1dg7q" path="res://scenes/modules/light_match_module.tscn" id="8_wgjog"]
+[ext_resource type="PackedScene" uid="uid://5lx6ok7hswsc" path="res://scenes/modules/golf_module.tscn" id="9_xad70"]
+[ext_resource type="PackedScene" uid="uid://cnvod76h0sudm" path="res://scenes/modules/frogger_module.tscn" id="10_6os6c"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ahar1"]
 size = Vector3(1, 1, 0.5)
@@ -45,20 +50,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, 0.3)
 [node name="PasskeyModule" parent="Modules" instance=ExtResource("4_0ccpd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -0.25, 0.3)
 
+[node name="AsteroidsModule" parent="Modules" instance=ExtResource("5_eapq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.25, 0.3)
+
+[node name="DodgeModule" parent="Modules" instance=ExtResource("6_bo3d5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, 0.25, -0.3)
+
+[node name="FroggerModule" parent="Modules" instance=ExtResource("10_6os6c")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.25, 0.25, -0.3)
+
+[node name="LightMatchModule" parent="Modules" instance=ExtResource("8_wgjog")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.25, -0.25, -0.3)
+
+[node name="GolfModule" parent="Modules" instance=ExtResource("9_xad70")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.25, -0.25, -0.3)
+
 [node name="ModuleLights" type="Node3D" parent="."]
 
 [node name="ModuleLight1" parent="ModuleLights" instance=ExtResource("5_dratf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.357217, 0.480483, -0.0151319)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.5, 0.1)
 
 [node name="ModuleLight2" parent="ModuleLights" instance=ExtResource("5_dratf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.207, 0.48, -0.015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, 0.1)
 
 [node name="ModuleLight3" parent="ModuleLights" instance=ExtResource("5_dratf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.057, 0.48, -0.015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.5, 0.1)
 
 [node name="ModuleLight4" parent="ModuleLights" instance=ExtResource("5_dratf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.093, 0.48, -0.015)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, 0.1)
+
+[node name="ModuleLight5" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.5, -0.1)
+
+[node name="ModuleLight6" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.5, -0.1)
+
+[node name="ModuleLight7" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.5, -0.1)
+
+[node name="ModuleLight8" parent="ModuleLights" instance=ExtResource("5_dratf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.5, -0.1)
 
 [node name="Wires" parent="." instance=ExtResource("6_war1q")]
 
@@ -70,8 +101,19 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.5, 
 mesh = SubResource("BoxMesh_femeb")
 
 [node name="Password" type="Label3D" parent="PasskeyMesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.025, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.015, 0)
 texture_filter = 0
 text = "Passkey: ####"
+font_size = 20
+outline_size = 0
+
+[node name="SerialMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999569, 0.0275189, 0.0102625, -0.0275204, -0.999621, 0, 0.0102587, -0.000282429, 0.999947, 0, -0.52, 0)
+mesh = SubResource("BoxMesh_femeb")
+
+[node name="Serial" type="Label3D" parent="SerialMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.015, 0)
+texture_filter = 0
+text = "SN: KA8OOm"
 font_size = 20
 outline_size = 0

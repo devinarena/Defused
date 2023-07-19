@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cowbkvm0jffin"]
+
+[ext_resource type="Script" path="res://script/minigames/dodge/goal.gd" id="1_2cudt"]
+[ext_resource type="Texture2D" uid="uid://b0bkr2rwskmh2" path="res://assets/dodge_flag.png" id="1_wo307"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1q40"]
+radius = 13.0
+height = 66.0
+
+[node name="Goal" type="Area2D"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_2cudt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("1_wo307")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y1q40")

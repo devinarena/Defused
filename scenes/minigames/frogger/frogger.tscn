@@ -1,0 +1,304 @@
+[gd_scene load_steps=11 format=3 uid="uid://0sqdh4nu1yaf"]
+
+[ext_resource type="Script" path="res://script/minigames/frogger/frogger.gd" id="1_efk6a"]
+[ext_resource type="Texture2D" uid="uid://dd08kqyqmtyuu" path="res://assets/solved.png" id="2_8k23d"]
+[ext_resource type="PackedScene" uid="uid://cdhup4dp62qn4" path="res://scenes/minigames/frogger/chicken.tscn" id="3_0cty7"]
+[ext_resource type="PackedScene" uid="uid://b01h20jctjhk" path="res://scenes/minigames/frogger/egg.tscn" id="4_n6vea"]
+[ext_resource type="PackedScene" uid="uid://dmao77ek648w3" path="res://scenes/minigames/frogger/car_spawner.tscn" id="5_n5oj3"]
+[ext_resource type="Texture2D" uid="uid://cu4i2vrew7xk8" path="res://assets/line.png" id="6_1ta2t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhh7j"]
+atlas = ExtResource("2_8k23d")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn6wy"]
+atlas = ExtResource("2_8k23d")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o26v"]
+atlas = ExtResource("2_8k23d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2d52p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhh7j")
+}],
+"loop": true,
+"name": &"in_progress",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn6wy")
+}],
+"loop": true,
+"name": &"solved",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o26v")
+}],
+"loop": true,
+"name": &"unsolved",
+"speed": 5.0
+}]
+
+[node name="Frogger" type="Node2D"]
+script = ExtResource("1_efk6a")
+metadata/_edit_horizontal_guides_ = [-32.0]
+
+[node name="Cars" type="Node" parent="."]
+
+[node name="SolvedIndicator" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(40, 608)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_2d52p")
+animation = &"unsolved"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 80.0
+offset_top = 596.0
+offset_right = 352.0
+offset_bottom = 619.0
+bbcode_enabled = true
+text = "[center]Cross the road![/center]"
+fit_content = true
+
+[node name="Chicken" parent="." instance=ExtResource("3_0cty7")]
+position = Vector2(192, 544)
+
+[node name="Egg" parent="." instance=ExtResource("4_n6vea")]
+position = Vector2(192, 64)
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 480.0
+offset_right = 352.0
+offset_bottom = 576.0
+
+[node name="ButtonUp" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "U"
+
+[node name="ButtonDown" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 96.0
+text = "D"
+
+[node name="ButtonLeft" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 64.0
+text = "L"
+
+[node name="ButtonRight" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 64.0
+text = "R"
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="CarSpawner" parent="Spawners" instance=ExtResource("5_n5oj3")]
+position = Vector2(-32, 448)
+
+[node name="CarSpawner2" parent="Spawners" instance=ExtResource("5_n5oj3")]
+position = Vector2(416, 320)
+flip_direction = true
+
+[node name="CarSpawner3" parent="Spawners" instance=ExtResource("5_n5oj3")]
+position = Vector2(416, 192)
+flip_direction = true
+
+[node name="CarSpawner4" parent="Spawners" instance=ExtResource("5_n5oj3")]
+position = Vector2(-32, 128)
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Line" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(32, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line2" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(96, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line3" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(160, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line4" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(224, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line5" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(288, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line6" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(352, 448)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line7" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(32, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line8" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(96, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line9" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(160, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line10" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(224, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line11" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(288, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line12" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(352, 320)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line13" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(32, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line14" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(96, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line15" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(160, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line16" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(224, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line17" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(288, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line18" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(352, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line19" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(32, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line20" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(96, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line21" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(160, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line22" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(224, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line23" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(288, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[node name="Line24" type="Sprite2D" parent="Lines"]
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+position = Vector2(352, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("6_1ta2t")
+
+[connection signal="pressed" from="Buttons/ButtonUp" to="." method="_on_button_up_pressed"]
+[connection signal="pressed" from="Buttons/ButtonDown" to="." method="_on_button_down_pressed"]
+[connection signal="pressed" from="Buttons/ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="Buttons/ButtonRight" to="." method="_on_button_right_pressed"]

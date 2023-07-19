@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1tqe6i7jghfo"]
+
+[ext_resource type="Script" path="res://script/minigames/asteroids/rocket.gd" id="1_iw582"]
+[ext_resource type="Texture2D" uid="uid://dskra6vf0o488" path="res://assets/rocket.png" id="1_pah4f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ef11j"]
+radius = 9.0
+height = 36.0
+
+[node name="Rocket" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_iw582")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_pah4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ef11j")

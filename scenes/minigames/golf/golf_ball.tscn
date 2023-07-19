@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bua51ksffox4v"]
+
+[ext_resource type="Texture2D" uid="uid://cj3j0fl548jf0" path="res://assets/golf_ball.png" id="1_e4aap"]
+[ext_resource type="Script" path="res://script/minigames/golf/golf_ball.gd" id="1_ord76"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mnot4"]
+radius = 16.0
+
+[node name="GolfBall" type="RigidBody2D"]
+texture_filter = 1
+collision_layer = 128
+collision_mask = 128
+input_pickable = true
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_ord76")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_e4aap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mnot4")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

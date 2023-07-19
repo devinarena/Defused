@@ -16,10 +16,11 @@ sky_material = SubResource("ProceduralSkyMaterial_emwrm")
 background_mode = 1
 sky = SubResource("Sky_y0gde")
 ambient_light_sky_contribution = 0.4
+ambient_light_energy = 0.0
 tonemap_mode = 3
 tonemap_white = 2.53
 glow_enabled = true
-glow_bloom = 0.2
+glow_bloom = 0.4
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_pbsn6"]
 
@@ -55,15 +56,19 @@ camera_attributes = SubResource("CameraAttributesPractical_pbsn6")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-fov = 90.0
+current = true
+fov = 80.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.41393)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.58607)
+light_bake_mode = 1
 shadow_enabled = true
+shadow_blur = 3.0
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, -2)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
 light_color = Color(0, 0, 0, 1)
+light_bake_mode = 1
 shadow_enabled = true
 
 [node name="GUI" type="CanvasLayer" parent="."]
@@ -92,17 +97,23 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 28
-text = "Modules Solved: 0/6"
+text = "Modules Solved: 0/8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MinigameContainer" type="PanelContainer" parent="GUI/MarginContainer"]
+[node name="CanvasLayer" type="CanvasLayer" parent="GUI/MarginContainer"]
+layer = 3
+
+[node name="MinigameContainer" type="PanelContainer" parent="GUI/MarginContainer/CanvasLayer"]
 visible = false
-layout_mode = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 376.0
+offset_bottom = 712.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5v1dy")
 
-[node name="BackToBomb" type="Button" parent="GUI/MarginContainer/MinigameContainer"]
+[node name="BackToBomb" type="Button" parent="GUI/MarginContainer/CanvasLayer/MinigameContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
@@ -111,49 +122,49 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_5fwxv")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5fwxv")
 text = "Back to Bomb"
 
-[node name="WinDialog" type="PanelContainer" parent="GUI/MarginContainer"]
+[node name="Dialog" type="PanelContainer" parent="GUI/MarginContainer"]
 process_mode = 2
 visible = false
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/WinDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/MarginContainer/Dialog"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/WinDialog/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer/Dialog/MarginContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "You won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Description" type="Label" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "You defused the bomb successfully!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Time" type="Label" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer"]
+[node name="Secondary" type="Label" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Time: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PlayAgain" type="Button" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="PlayAgain" type="Button" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Again"
 
-[node name="MainMenu" type="Button" parent="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MainMenu" type="Button" parent="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Menu"
@@ -161,6 +172,6 @@ text = "Menu"
 [node name="SecondsTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="pressed" from="GUI/MarginContainer/MinigameContainer/BackToBomb" to="." method="_on_back_to_bomb_pressed"]
-[connection signal="pressed" from="GUI/MarginContainer/WinDialog/MarginContainer/VBoxContainer/HBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="GUI/MarginContainer/CanvasLayer/MinigameContainer/BackToBomb" to="." method="_on_back_to_bomb_pressed"]
+[connection signal="pressed" from="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/HBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="timeout" from="SecondsTimer" to="." method="_on_seconds_timer_timeout"]

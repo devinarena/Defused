@@ -22,6 +22,9 @@ func _ready():
 
 	for button in btns.get_children():
 		button.pressed.connect(_on_button_pressed.bind(button.text))
+	
+	set_process_mode(PROCESS_MODE_DISABLED)
+
 
 
 func _process(delta):

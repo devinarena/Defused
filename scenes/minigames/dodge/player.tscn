@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://c13wjgrqpicfn"]
+
+[ext_resource type="Script" path="res://script/minigames/dodge/player.gd" id="1_84y5b"]
+[ext_resource type="Texture2D" uid="uid://c78tkfothhlq8" path="res://assets/dodge_player.png" id="1_bjb1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rds0g"]
+atlas = ExtResource("1_bjb1i")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hyff"]
+atlas = ExtResource("1_bjb1i")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tl4v7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rds0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hyff")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4tv8k"]
+radius = 14.0
+height = 66.0
+
+[node name="Player" type="Area2D"]
+texture_filter = 1
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_84y5b")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_tl4v7")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4tv8k")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

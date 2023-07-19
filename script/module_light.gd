@@ -13,7 +13,7 @@ func set_color(color: Color):
 
 
 func turn_off() -> void:
-	mesh.mesh.material.emission_enabled = false
+	mesh.mesh.material.emission = Color(0, 0, 0, 1)
 
 
 func _process(delta):

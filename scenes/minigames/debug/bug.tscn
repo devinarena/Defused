@@ -10,6 +10,12 @@ radius = 32.0
 [node name="Bug" type="Area2D"]
 texture_filter = 1
 script = ExtResource("1_agtan")
+hitpoints = 4
+
+[node name="HealthBar" parent="." instance=ExtResource("3_ekcmh")]
+visible = false
+offset_top = -64.0
+offset_bottom = -37.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_id21l")
@@ -20,11 +26,6 @@ scale = Vector2(4, 4)
 sprite_frames = ExtResource("1_35x5x")
 autoplay = "default"
 frame_progress = 0.670413
-
-[node name="HealthBar" parent="." instance=ExtResource("3_ekcmh")]
-visible = false
-offset_top = -64.0
-offset_bottom = -37.0
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true

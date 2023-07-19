@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwa1cbtlhccpy"]
+
+[ext_resource type="Texture2D" uid="uid://dskra6vf0o488" path="res://assets/rocket.png" id="1_8y0er"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_8y0er")
+expand_mode = 2
+stretch_mode = 5

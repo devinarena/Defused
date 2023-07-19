@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://5lx6ok7hswsc"]
+
+[ext_resource type="PackedScene" uid="uid://cbggt73dks1lf" path="res://scenes/modules/module.tscn" id="1_y6hg4"]
+[ext_resource type="Script" path="res://script/modules/golf_module.gd" id="2_mkc27"]
+[ext_resource type="PackedScene" uid="uid://dhdhx157vvfwr" path="res://scenes/minigames/golf/golf.tscn" id="3_5b1h3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ei3ri"]
+radius = 0.1
+height = 0.1
+is_hemisphere = true
+
+[node name="GolfModule" instance=ExtResource("1_y6hg4")]
+script = ExtResource("2_mkc27")
+module_name = "golf"
+
+[node name="Golf" parent="." index="2" instance=ExtResource("3_5b1h3")]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05)
+mesh = SubResource("SphereMesh_ei3ri")

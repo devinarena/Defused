@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Defused"
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.0", "Forward Plus")
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -30,6 +30,18 @@ window/handheld/orientation=1
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_physics/layer_1="background"
+2d_physics/layer_2="wires"
+2d_physics/layer_3="debug"
+2d_physics/layer_4="passkey"
+2d_physics/layer_5="asteroids"
+2d_physics/layer_6="dodge"
+2d_physics/layer_7="frogger"
+2d_physics/layer_8="golf"
+
 [rendering]
 
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

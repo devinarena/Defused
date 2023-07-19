@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx8mheuj8upn8"]
+
+[ext_resource type="Texture2D" uid="uid://nukwmi3bl7vm" path="res://assets/cars.png" id="1_cyefc"]
+[ext_resource type="Script" path="res://script/minigames/frogger/car.gd" id="1_fvlm8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e31r7"]
+atlas = ExtResource("1_cyefc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cfjqk"]
+radius = 14.0357
+
+[node name="Car" type="Area2D"]
+texture_filter = 1
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_fvlm8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_e31r7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cfjqk")

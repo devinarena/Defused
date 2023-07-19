@@ -4,16 +4,22 @@ const minigames = {
 	"wires": "Bomb/Modules/WiresModule/Wires",
 	"debug": "Bomb/Modules/DebugModule/Debug",
 	"passkey": "Bomb/Modules/PasskeyModule/Passkey",
+	"asteroids": "Bomb/Modules/AsteroidsModule/Asteroids",
+	"dodge": "Bomb/Modules/DodgeModule/Dodge",
+	"frogger": "Bomb/Modules/FroggerModule/Frogger",
+	"golf": "Bomb/Modules/GolfModule/Golf",
 }
 
 @onready var bomb = $Bomb
 @onready var timer_label = $GUI/MarginContainer/Timer
 @onready var solved_label = $GUI/MarginContainer/Solved
-@onready var minigame_container = $GUI/MarginContainer/MinigameContainer
+@onready var minigame_container = $GUI/MarginContainer/CanvasLayer/MinigameContainer
 @onready var camera = $Camera3D
 @onready var environment = $WorldEnvironment
-@onready var win_dialog = $GUI/MarginContainer/WinDialog
-@onready var time_lbl = win_dialog.get_node("MarginContainer/VBoxContainer/Time")
+@onready var dialog = $GUI/MarginContainer/Dialog
+@onready var dialog_title = $GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/Title
+@onready var dialog_desc = $GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/Description
+@onready var secondary_lbl = dialog.get_node("MarginContainer/VBoxContainer/Secondary")
 @onready var timer = $SecondsTimer
 
 #var sky_color_start = Color(67 / 255, 90 / 255, 117 / 255, 1)
@@ -21,8 +27,8 @@ var sky_color_start = Color(0.1, 0.2, 0.35, 1)
 # var sky_color_end = Color(61 / 255, 28 / 255, 28 / 255, 1)
 var sky_color_end = Color(0.2, 0.08, 0.08, 1)
 
-var start_time: int = 60
-var time_left: int = 60
+var start_time: int = 90
+var time_left: int = 90
 var modules: int = 0
 
 const DRAG_CUTOFF: int = 85
@@ -67,12 +73,41 @@ func start_minigame(path: String) -> void:
 	minigame_container.add_child(minigame_node)
 	minigame_node.global_position = Vector2(0, 8)
 	minigame_node.show()
+	minigame_node.set_process_mode(PROCESS_MODE_INHERIT)
 
 
-func show_win_dialog() -> void:
+func stop_minigame() -> void:
+	var minigame_node = minigame_container.get_children().back()
+	minigame_container.hide()
+	minigame_node.hide()
+	minigame_container.remove_child(minigame_node)
+	minigame_module.add_child(minigame_node)
+	minigame_node.set_process_mode(PROCESS_MODE_DISABLED)
+
+	var solved = 0
+	var idx = 0
+
+	for node in bomb.get_node("Modules").get_children():
+		if node.is_solved():
+			solved += 1
+			bomb.turn_off_light(idx)
+		idx += 1
+	
+	solved_label.text = "Modules Solved: %d/%d" % [solved, modules]
+	
+	if solved == modules and time_left > 0:
+		timer.stop()
+		show_dialog("You win!", "You successfully managed to defuse the bomb.", "Time: %s seconds" % [start_time - time_left])
+
+
+func show_dialog(title: String, desc: String, secondary: String) -> void:
+	if minigame_container.get_child_count() > 1:
+		stop_minigame()
 	get_tree().paused = true
-	win_dialog.show()
-	time_lbl.text = "Time: %s seconds" % [start_time - time_left]
+	dialog.show()
+	dialog_title.text = title
+	dialog_desc.text = desc
+	secondary_lbl.text = secondary
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -107,31 +142,15 @@ func _on_seconds_timer_timeout() -> void:
 
 	environment.environment.background_color = lerp(sky_color_end, sky_color_start, float(time_left) / start_time)
 
-
-func _on_back_to_bomb_pressed() -> void:
-	var minigame_node = minigame_container.get_children().back()
-	minigame_container.hide()
-	minigame_node.hide()
-	minigame_container.remove_child(minigame_node)
-	minigame_module.add_child(minigame_node)
-
-	var solved = 0
-	var idx = 0
-
-	for node in bomb.get_node("Modules").get_children():
-		if node.is_solved():
-			solved += 1
-			bomb.turn_off_light(idx)
-		idx += 1
-	
-	solved_label.text = "Modules Solved: %d/%d" % [solved, modules]
-
-	if solved >= modules / 2:
+	if time_left <= start_time * 0.75:
 		bomb.show_passkey()
 	
-	if solved == modules:
+	if time_left <= 0:
 		timer.stop()
-		show_win_dialog()
+		show_dialog("You lose", "You ran out of time and the bomb detonated.", "Unlucky!")
+
+func _on_back_to_bomb_pressed() -> void:
+	stop_minigame()
 
 
 func _on_play_again_pressed() -> void:

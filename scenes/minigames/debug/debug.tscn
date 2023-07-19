@@ -43,6 +43,7 @@ animations = [{
 }]
 
 [node name="Debug" type="Node2D"]
+process_mode = 4
 script = ExtResource("1_urqaa")
 
 [node name="Bugs" type="Node2D" parent="."]

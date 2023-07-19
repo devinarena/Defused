@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnvod76h0sudm"]
+
+[ext_resource type="PackedScene" uid="uid://cbggt73dks1lf" path="res://scenes/modules/module.tscn" id="1_cbtgy"]
+[ext_resource type="PackedScene" uid="uid://0sqdh4nu1yaf" path="res://scenes/minigames/frogger/frogger.tscn" id="2_11w1c"]
+[ext_resource type="Script" path="res://script/modules/frogger_module.gd" id="2_785o4"]
+[ext_resource type="Texture2D" uid="uid://cbegf1m8xq7e6" path="res://assets/chicken.png" id="3_x02ma"]
+
+[node name="FroggerModule" instance=ExtResource("1_cbtgy")]
+script = ExtResource("2_785o4")
+module_name = "frogger"
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.063)
+texture_filter = 0
+texture = ExtResource("3_x02ma")
+
+[node name="Frogger" parent="." index="3" instance=ExtResource("2_11w1c")]
+visible = false

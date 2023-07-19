@@ -44,14 +44,19 @@ func set_solved_pos(solved_pos_: Vector2) -> void:
 func solved() -> bool:
 	return solved_pos != Vector2.ZERO
 
+
 func _process(delta):
 	if selected or solved():
 		queue_redraw()
 
 
 func _draw():
+	var pos = Vector2(0, -14) if answer_wire else Vector2(0, 14)
 	if selected:
-		draw_line(Vector2(0, 16), get_global_mouse_position() - global_position, color, 4) 
+		draw_line(pos, get_global_mouse_position() - global_position, color, 4) 
 	elif solved_pos:
-		draw_line(Vector2(0, 16), solved_pos - global_position + Vector2(0, -16), color, 4)
+		if answer_wire:
+			draw_line(pos, solved_pos - global_position - pos, Color(0.5, 0.5, 0.5, 1.0), 8)
+		else:
+			draw_line(pos, solved_pos - global_position - pos, color, 4)
 		

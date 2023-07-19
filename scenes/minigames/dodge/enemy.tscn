@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnqbi43vmx080"]
+
+[ext_resource type="Script" path="res://script/minigames/dodge/enemy.gd" id="1_e3lxw"]
+[ext_resource type="Texture2D" uid="uid://cid5wj47xvacy" path="res://assets/dodge_enemy.png" id="2_4lgpm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxdy8"]
+atlas = ExtResource("2_4lgpm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uppns"]
+atlas = ExtResource("2_4lgpm")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3kom"]
+atlas = ExtResource("2_4lgpm")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5rwd"]
+atlas = ExtResource("2_4lgpm")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlyr6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxdy8")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uppns")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3kom")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5rwd")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7kei"]
+radius = 24.0208
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("1_e3lxw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jlyr6")
+animation = &"1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f7kei")

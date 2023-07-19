@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var hitpoints: int = 5
+@export var hitpoints: int = 3
 @export var move: bool = true
 
 var target_pos = Vector2.ZERO
@@ -11,7 +11,7 @@ var velocity: Vector2
 @onready var move_timer = $MoveTimer
 
 func _ready():
-	rotation = 2 * randf() * PI
+	pass
 
 
 func _process(delta):
@@ -25,7 +25,7 @@ func _physics_process(delta):
 			if position.distance_squared_to(target_pos) > 10:
 				velocity = (target_pos - position).normalized() * 100
 				position += velocity * delta
-				rotation = lerp_angle(rotation, velocity.angle() + PI / 2, 0.1)
+				$Sprite2D.rotation = lerp_angle($Sprite2D.rotation, velocity.angle() + PI / 2, 0.1)
 			else:
 				move = false
 				move_timer.start()

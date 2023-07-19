@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckogqneuqu25w"]
+
+[ext_resource type="Texture2D" uid="uid://8aec2ucn2e1e" path="res://assets/light_frame.png" id="1_xm2hc"]
+[ext_resource type="Texture2D" uid="uid://ysv2un6ngtu5" path="res://assets/light.png" id="2_hyvyx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajh3r"]
+atlas = ExtResource("1_xm2hc")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdq0h"]
+atlas = ExtResource("1_xm2hc")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbfmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajh3r")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdq0h")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1adn"]
+radius = 24.0
+
+[node name="Switch" type="Area2D"]
+texture_filter = 1
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jbfmp")
+animation = &"off"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t1adn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.75
+range_layer_max = 10
+texture = ExtResource("2_hyvyx")

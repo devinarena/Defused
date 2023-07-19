@@ -26,8 +26,8 @@ animations = [{
 }]
 
 [node name="SuperBug" instance=ExtResource("1_jqkns")]
-hitpoints = 8
+hitpoints = 7
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_xuot5")
 frame_progress = 0.886931

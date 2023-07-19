@@ -11,7 +11,7 @@ var password = 0
 func _ready():
 	password = randi_range(1000, 9999)
 
-	var light_colors = [Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE, Color.YELLOW, Color.PURPLE]
+	var light_colors = [Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE_RED, Color.YELLOW, Color.PURPLE, Color.DARK_GOLDENROD, Color.PINK]
 
 	for light in mod_lights.get_children():
 		var col = light_colors.pop_at(randi() % light_colors.size())

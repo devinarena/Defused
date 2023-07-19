@@ -19,6 +19,7 @@ albedo_color = Color(0.298039, 1, 0, 1)
 
 [node name="WiresModule" instance=ExtResource("1_gybap")]
 script = ExtResource("2_rfgit")
+module_name = "wires"
 
 [node name="WireMesh" type="MeshInstance3D" parent="." index="2"]
 transform = Transform3D(-1.09278e-09, 0.18, 0, -0.025, -7.86805e-09, 0, 0, 0, 0.025, 0, 0, 0.0769617)

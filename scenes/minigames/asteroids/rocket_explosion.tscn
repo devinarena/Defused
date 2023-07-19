@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0pwtfb8js8e0"]
+
+[ext_resource type="Texture2D" uid="uid://dy0hcsqlkkpfx" path="res://assets/explode.png" id="1_ppqjg"]
+[ext_resource type="Script" path="res://script/minigames/asteroids/rocket_explosion.gd" id="2_q1ba2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac7us"]
+atlas = ExtResource("1_ppqjg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3d8u"]
+atlas = ExtResource("1_ppqjg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tu8j"]
+atlas = ExtResource("1_ppqjg")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmpyu"]
+atlas = ExtResource("1_ppqjg")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_atroc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac7us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3d8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tu8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmpyu")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="RocketExplosion" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_atroc")
+autoplay = "default"
+script = ExtResource("2_q1ba2")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

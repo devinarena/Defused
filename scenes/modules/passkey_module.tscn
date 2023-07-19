@@ -7,6 +7,7 @@
 
 [node name="PasskeyModule" instance=ExtResource("1_beny7")]
 script = ExtResource("2_7w3lc")
+module_name = "passkey"
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="2"]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0.065)

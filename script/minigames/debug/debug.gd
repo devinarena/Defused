@@ -19,6 +19,7 @@ func _ready():
 		bugs.add_child(b)
 		b.position = Vector2(randi_range(32, get_viewport_rect().size.x - 64), randi_range(32, get_viewport_rect().size.y - 128))
 	
+	set_process_mode(PROCESS_MODE_DISABLED)
 
 func _process(delta):
 	pass
@@ -29,6 +30,7 @@ func bug_exited() -> void:
 		$SolvedIndicator.play("solved")
 	else:
 		$SolvedIndicator.play("in_progress")
+
 
 func is_solved() -> bool:
 	return bugs.get_child_count() == 0

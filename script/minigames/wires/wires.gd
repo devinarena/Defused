@@ -4,6 +4,7 @@ extends Node2D
 @onready var outputs = $Outputs
 @onready var wire_grab = $WireGrab
 @onready var indicator = $SolvedIndicator
+@onready var label = $RichTextLabel
 
 var prompts = {
 	"big": "small",
@@ -27,28 +28,19 @@ var prompts = {
 	"yes": "no",
 	"on": "off",
 	"open": "closed",
-	# # Math
-	# "3 x 5": "15",
-	# "-7 + 12": "5",
-	# "100 - 36": "64",
-	# "sqrt(64)": "8.0",
-	# "PI = ~?": "22/7",
-	# "4!": "24",
-	# "a=b and b=c": "a=c",
-	# "f(x) = x - 3, f(3) = ": "0",
-	# # Science
-	# "protons, neutrons, ...": "electrons",
-	# "Oxygen": "O2",
-	# "6H20+6CO2 -> C6H12O6": "Photosynthesis",
-	# "KCl": "Potassium Chloride",
-	# "Helenium Nucleus": "Alpha Radiation"
 }
 
 var selected_wire: Node
 var solved: bool = false
+var mode: String = "OPPOSITES"
 
 func _ready():
 	var colors = []
+
+	if randf() < 0.5:
+		mode = "COLORS"
+	
+	label.text = "[center]Match all the wires by their [b]%s[/b].[/center]" % mode
 
 	for i in range(inputs.get_child_count()):
 		colors.push_back(Color(randf_range(0.25, 0.75), randf_range(0.25, 0.75), randf_range(0.25, 0.75), 1.0))
@@ -85,6 +77,12 @@ func _ready():
 		node.set_prompt(question)
 		node.input_event.connect(_on_wire_input.bind(node))
 		partner.set_prompt(prompts[question])
+	
+	for node in outputs.get_children():
+		node.input_event.connect(_on_wire_input.bind(node))
+
+	
+	set_process_mode(PROCESS_MODE_DISABLED)
 
 
 func check_solved() -> void:
@@ -105,14 +103,9 @@ func check_solved() -> void:
 func _on_wire_input(viewport:Node, event:InputEvent, shape_idx:int, node: Node) -> void:
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if not node.answer_wire and not node.solved():
+			if not node.solved():
 				selected_wire = node
 				selected_wire.selected = true
-		else:
-			if node.answer_wire:
-				selected_wire.set_solved_pos(node.answer_wire.global_position)
-				selected_wire.selected = false
-				selected_wire = null
 
 
 func _input(event):
@@ -127,8 +120,24 @@ func _unhandled_input(event: InputEvent):
 			if selected_wire:
 				for area in wire_grab.get_overlapping_areas():
 					if area is Wire:
-						if prompts[selected_wire.prompt] == area.prompt:
+						if selected_wire == area:
+							break
+						
+						var solved: bool = false
+						
+						if mode == "COLORS":
+							if selected_wire.color == area.color:
+								solved = true
+						else:
+							if not selected_wire.prompt in prompts:
+								if prompts[area.prompt] == selected_wire.prompt:
+									solved = true
+							elif prompts[selected_wire.prompt] == area.prompt:
+								solved = true
+						
+						if solved:
 							selected_wire.set_solved_pos(area.global_position)
+							area.set_solved_pos(selected_wire.global_position)
 							selected_wire.breakage.hide()
 							area.breakage.hide()
 							check_solved()

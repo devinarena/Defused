@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dosx8yun2lax5"]
+
+[ext_resource type="Script" path="res://script/minigames/light_match/light_frame.gd" id="1_h4cg2"]
+[ext_resource type="Texture2D" uid="uid://8aec2ucn2e1e" path="res://assets/light_frame.png" id="1_tpu7j"]
+[ext_resource type="Texture2D" uid="uid://ysv2un6ngtu5" path="res://assets/light.png" id="2_nitcf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvced"]
+atlas = ExtResource("1_tpu7j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edtw4"]
+atlas = ExtResource("1_tpu7j")
+region = Rect2(0, 16, 16, 16)
+
+[node name="LightFrame" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_h4cg2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_gvced")
+
+[node name="Light" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 0.278431, 1)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_edtw4")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+color = Color(1, 1, 0.278431, 1)
+energy = 2.0
+range_layer_max = 10
+texture = ExtResource("2_nitcf")
+texture_scale = 8.0
+height = 16.0
