@@ -1,14 +1,19 @@
 extends Node2D
 
+const courses = [preload("res://scenes/minigames/golf/course_1.tscn"), 
+				preload("res://scenes/minigames/golf/course_2.tscn")]
 
-@onready var course = $Course
-@onready var ball = course.get_node("GolfBall")
+var course
+var ball 
 
 var strokes: int = 0
 
 func _ready() -> void:
-	pass # Replace with function body.
-
+	var template = courses[randi() % courses.size()]
+	course = template.instantiate()
+	add_child(course)
+	course.name = "Course"
+	ball = course.get_node("GolfBall")
 
 func _process(delta) -> void:
 	pass

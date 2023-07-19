@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhdhx157vvfwr"]
+[gd_scene load_steps=7 format=3 uid="uid://dhdhx157vvfwr"]
 
 [ext_resource type="Script" path="res://script/minigames/golf/golf.gd" id="1_idgl1"]
 [ext_resource type="Texture2D" uid="uid://dd08kqyqmtyuu" path="res://assets/solved.png" id="2_ph1l7"]
-[ext_resource type="PackedScene" uid="uid://l8t828qwoo2e" path="res://scenes/minigames/golf/course_1.tscn" id="3_ecnt5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhh7j"]
 atlas = ExtResource("2_ph1l7")
@@ -62,5 +61,3 @@ text = "Golf!
 Strokes:"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Course" parent="." instance=ExtResource("3_ecnt5")]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcggfveh52m0w"]
+[gd_scene load_steps=6 format=3 uid="uid://bcggfveh52m0w"]
 
 [ext_resource type="SpriteFrames" uid="uid://bwty1r7oe6aq6" path="res://assets/debug_bug_frames.tres" id="1_35x5x"]
 [ext_resource type="Script" path="res://script/minigames/debug/bug.gd" id="1_agtan"]
 [ext_resource type="PackedScene" uid="uid://b5o5vyqwdbff1" path="res://scenes/health_bar.tscn" id="3_ekcmh"]
+[ext_resource type="AudioStream" uid="uid://d0iyctykacjvx" path="res://assets/sound/combo_button_pressed.wav" id="4_urb2b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_id21l"]
 radius = 32.0
@@ -29,5 +30,8 @@ frame_progress = 0.670413
 
 [node name="MoveTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_urb2b")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

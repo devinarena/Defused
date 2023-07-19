@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0pwtfb8js8e0"]
+[gd_scene load_steps=9 format=3 uid="uid://c0pwtfb8js8e0"]
 
 [ext_resource type="Texture2D" uid="uid://dy0hcsqlkkpfx" path="res://assets/explode.png" id="1_ppqjg"]
 [ext_resource type="Script" path="res://script/minigames/asteroids/rocket_explosion.gd" id="2_q1ba2"]
+[ext_resource type="AudioStream" uid="uid://b6yfnftegjly2" path="res://assets/sound/asteroid_destroy.wav" id="3_cgj6j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac7us"]
 atlas = ExtResource("1_ppqjg")
@@ -45,5 +46,9 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_atroc")
 autoplay = "default"
 script = ExtResource("2_q1ba2")
+
+[node name="Explode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cgj6j")
+autoplay = true
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

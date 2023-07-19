@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://pj2f4v63hfms"]
+[gd_scene load_steps=12 format=3 uid="uid://pj2f4v63hfms"]
 
 [ext_resource type="PackedScene" uid="uid://b5kxnyg75jt1l" path="res://scenes/bomb.tscn" id="1_hjbi6"]
 [ext_resource type="Script" path="res://script/game.gd" id="1_p57ic"]
+[ext_resource type="Script" path="res://script/Camera3DwShake.gd" id="3_dxdjk"]
+[ext_resource type="AudioStream" uid="uid://dx4e35b4fa01k" path="res://assets/sound/explode.wav" id="3_riqsg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_emwrm"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -55,9 +57,19 @@ environment = SubResource("Environment_8khnf")
 camera_attributes = SubResource("CameraAttributesPractical_pbsn6")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 current = true
 fov = 80.0
+script = ExtResource("3_dxdjk")
+
+[node name="Fade" type="ColorRect" parent="Camera3D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.58607)
@@ -171,6 +183,9 @@ text = "Menu"
 
 [node name="SecondsTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_riqsg")
 
 [connection signal="pressed" from="GUI/MarginContainer/CanvasLayer/MinigameContainer/BackToBomb" to="." method="_on_back_to_bomb_pressed"]
 [connection signal="pressed" from="GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/HBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]

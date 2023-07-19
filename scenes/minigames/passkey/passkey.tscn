@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cid2blrawv4w0"]
+[gd_scene load_steps=8 format=3 uid="uid://cid2blrawv4w0"]
 
 [ext_resource type="Script" path="res://script/minigames/passkey/passkey.gd" id="1_73q0k"]
 [ext_resource type="Texture2D" uid="uid://dd08kqyqmtyuu" path="res://assets/solved.png" id="2_b4hxx"]
+[ext_resource type="AudioStream" uid="uid://d0iyctykacjvx" path="res://assets/sound/combo_button_pressed.wav" id="3_i8xlb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhh7j"]
 atlas = ExtResource("2_b4hxx")
@@ -179,5 +180,8 @@ offset_bottom = 575.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Reset"
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_i8xlb")
 
 [connection signal="pressed" from="ResetButton" to="." method="_on_reset_button_pressed"]

@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var bomb = get_tree().root.get_node("Game/Bomb")
 @onready var answer_lbl = $PanelContainer/MarginContainer/Answer
+@onready var button_sound = $ButtonSound
 var btns
 
 var password: String = ""
@@ -38,6 +39,7 @@ func _on_button_pressed(button):
 	answer_lbl.text += "* "
 
 	$SolvedIndicator.play("in_progress")
+	button_sound.play()
 		
 	if password.length() >= 4:
 		if password == str(bomb.password):

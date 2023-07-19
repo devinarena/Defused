@@ -31,7 +31,7 @@ func spawn_asteroids() -> void:
 		var child = asteroid.instantiate()
 		asteroids.add_child(child)
 		var x = randi_range(32, get_viewport_rect().size.x - 64)
-		var y = -randi_range(32, get_viewport_rect().size.y - 128)
+		var y = -randi_range(32, get_viewport_rect().size.y - 96)
 		child.position = Vector2(x, y)
 
 
@@ -51,16 +51,20 @@ func _process(delta):
 			break
 
 
+func fire_rocket(target_pos: Vector2) -> void:
+	var r = rocket.instantiate()
+	rockets.add_child(r)
+	r.position = ship.position
+	r.target(target_pos)
+	bullets -= 1
+	bullet_indicator.get_child(bullets).queue_free()
+
+
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if bullets > 0:
-				var r = rocket.instantiate()
-				rockets.add_child(r)
-				r.position = ship.position
-				r.target(event.position)
-				bullets -= 1
-				bullet_indicator.get_child(bullets).queue_free()
+				fire_rocket(event.position)
 
 
 func asteroid_destroyed() -> void:

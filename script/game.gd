@@ -7,6 +7,7 @@ const minigames = {
 	"asteroids": "Bomb/Modules/AsteroidsModule/Asteroids",
 	"dodge": "Bomb/Modules/DodgeModule/Dodge",
 	"frogger": "Bomb/Modules/FroggerModule/Frogger",
+	"light_match": "Bomb/Modules/LightMatchModule/LightMatch",
 	"golf": "Bomb/Modules/GolfModule/Golf",
 }
 
@@ -21,6 +22,7 @@ const minigames = {
 @onready var dialog_desc = $GUI/MarginContainer/Dialog/MarginContainer/VBoxContainer/Description
 @onready var secondary_lbl = dialog.get_node("MarginContainer/VBoxContainer/Secondary")
 @onready var timer = $SecondsTimer
+@onready var explosion_sound = $ExplosionSound
 
 #var sky_color_start = Color(67 / 255, 90 / 255, 117 / 255, 1)
 var sky_color_start = Color(0.1, 0.2, 0.35, 1)
@@ -110,6 +112,13 @@ func show_dialog(title: String, desc: String, secondary: String) -> void:
 	secondary_lbl.text = secondary
 
 
+func lose() -> void:
+	timer.stop()
+	show_dialog("You lose", "You ran out of time and the bomb detonated.", "Unlucky!")
+	explosion_sound.play()
+	camera.shake = 0.2
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if minigame_container.visible:
 		return
@@ -146,8 +155,7 @@ func _on_seconds_timer_timeout() -> void:
 		bomb.show_passkey()
 	
 	if time_left <= 0:
-		timer.stop()
-		show_dialog("You lose", "You ran out of time and the bomb detonated.", "Unlucky!")
+		lose()
 
 func _on_back_to_bomb_pressed() -> void:
 	stop_minigame()

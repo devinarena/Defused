@@ -11,7 +11,7 @@ var angular_velocity: float = 0
 
 func _ready():
 	$AnimatedSprite2D.play(str(randi() % 3 + 1))
-	velocity = Vector2(0, randi_range(150, 250))
+	velocity = Vector2(0, randi_range(150, 225))
 	angular_velocity = randf_range(-PI, PI)
 
 

@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://c74fpkqw544q5"]
+
+[ext_resource type="PackedScene" uid="uid://bua51ksffox4v" path="res://scenes/minigames/golf/golf_ball.tscn" id="1_stsx2"]
+[ext_resource type="PackedScene" uid="uid://b1nvferq5n50f" path="res://scenes/minigames/golf/goal.tscn" id="2_opr5p"]
+[ext_resource type="Texture2D" uid="uid://bmpxwfthk4oon" path="res://assets/asteroids.png" id="3_dihkc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6p1ci"]
+bounce = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y4mj"]
+atlas = ExtResource("3_dihkc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ukqy"]
+load_path = "res://.godot/imported/asteroids.png-31aa57225c0149f928c73650825b22af.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te0yp"]
+atlas = SubResource("CompressedTexture2D_1ukqy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekkwc"]
+size = Vector2(248, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yws2x"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdmik"]
+radius = 25.0799
+
+[node name="Course2" type="Node2D"]
+
+[node name="GolfBall" parent="." instance=ExtResource("1_stsx2")]
+position = Vector2(192, 560)
+physics_material_override = SubResource("PhysicsMaterial_6p1ci")
+
+[node name="Goal" parent="." instance=ExtResource("2_opr5p")]
+position = Vector2(64, 48)
+
+[node name="Obstacles" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles"]
+polygon = PackedVector2Array(0, -32, 0, 0, 384, 0, 384, 720, 0, 720, 0, -32, -32, -32, -32, 752, 416, 752, 416, -32)
+
+[node name="Rock" type="Sprite2D" parent="Obstacles"]
+texture_filter = 1
+position = Vector2(80, 288)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_7y4mj")
+
+[node name="Rock2" type="Sprite2D" parent="Obstacles"]
+texture_filter = 1
+position = Vector2(240, 416)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_te0yp")
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles"]
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 160.0
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(132, 144)
+shape = SubResource("RectangleShape2D_ekkwc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(80, 288)
+shape = SubResource("CircleShape2D_yws2x")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Obstacles"]
+position = Vector2(237, 421)
+shape = SubResource("CircleShape2D_jdmik")
